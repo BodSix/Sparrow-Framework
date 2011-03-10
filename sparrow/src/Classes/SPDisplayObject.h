@@ -87,7 +87,9 @@
     BOOL mVisible;
     BOOL mTouchable;
     
-    SPDisplayObjectContainer *mParent;    
+    // changed by [coryosborn] to allow a separate descendant to be a container
+    //SPDisplayObjectContainer *mParent;    
+    SPDisplayObject *mParent;
     double mLastTouchTimestamp;
     NSString *mName;
 }
@@ -101,6 +103,11 @@
 
 /// Removes the object from its parent, if it has one.
 - (void)removeFromParent;
+
+/// Promoted from the internals
+- (void)removeChild:(SPDisplayObject *)child; // added by CO
+- (void)dispatchEventOnChildren:(SPEvent *)event; // added by CO
+
 
 /// Creates a matrix that represents the transformation from the local coordinate system to another.
 - (SPMatrix*)transformationMatrixToSpace:(SPDisplayObject*)targetCoordinateSpace;
@@ -154,8 +161,10 @@
 /// The bounds of the object relative to the local coordinates of the parent.
 @property (nonatomic, readonly) SPRectangle *bounds;
 
+// I'm allowing this to be assignable [coryosborn]
 /// The display object container that contains this display object.
-@property (nonatomic, readonly) SPDisplayObjectContainer *parent;
+//@property (nonatomic, readonly) SPDisplayObjectContainer *parent;
+@property (nonatomic, assign) SPDisplayObject *parent;
 
 /// The topmost object in the display tree the object is part of.
 @property (nonatomic, readonly) SPDisplayObject *root;

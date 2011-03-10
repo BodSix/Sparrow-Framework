@@ -70,6 +70,13 @@
     [mParent removeChild:self];
 }
 
+// add by [coryosborn]
+- (void)removeChild:(SPDisplayObject *)child 
+{
+  return;
+}
+
+
 - (SPMatrix*)transformationMatrixToSpace:(SPDisplayObject*)targetCoordinateSpace
 {           
     if (targetCoordinateSpace == self)
@@ -297,21 +304,31 @@
     return [matrix autorelease];
 }
 
+// promoted from the Internal methods
+- (void)dispatchEventOnChildren:(SPEvent *)event
+{
+  [self dispatchEvent:event];
+}
+
+
 @end
 
 // -------------------------------------------------------------------------------------------------
 
 @implementation SPDisplayObject (Internal)
 
+/** removed to promote and let the @property take care of it [coryosborn]
 - (void)setParent:(SPDisplayObjectContainer*)parent 
 { 
     // only assigned, not retained -- otherwise, we would create a circular reference.
     mParent = parent; 
 }
+*/
 
+/** promoted above [coryosborn]
 - (void)dispatchEventOnChildren:(SPEvent *)event
 {
     [self dispatchEvent:event];
 }
-
+*/
 @end

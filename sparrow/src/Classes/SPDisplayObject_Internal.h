@@ -13,8 +13,8 @@
 #import "SPDisplayObject.h"
 
 @interface SPDisplayObject (Internal)
-
-- (void)setParent:(SPDisplayObjectContainer*)parent;
-- (void)dispatchEventOnChildren:(SPEvent *)event;
+//  I promoted these to the main class [coryosborn]
+//- (void)setParent:(SPDisplayObjectContainer*)parent;
+//- (void)dispatchEventOnChildren:(SPEvent *)event;
 
 @end

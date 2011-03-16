@@ -4,8 +4,8 @@ build/*
 *.mode1v3
 *.mode2v3
 *.perspectivev3
-Falcon.xcodeproj/xcuserdata
-Falcon.xcodeproj/project.xcworkspace
+*.xcodeproj/xcuserdata
+*.xcodeproj/project.xcworkspace
 
 # old skool
 .svn

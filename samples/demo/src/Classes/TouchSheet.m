@@ -85,7 +85,7 @@
         if (touch.tapCount == 2)
         {
             // bring self to front            
-            SPDisplayObjectContainer *parent = self.parent;
+            SPDisplayObjectContainer *parent = (SPDisplayObjectContainer *) self.parent;
             [self retain];
             [parent removeChild:self];
             [parent addChild:self];

@@ -1,8 +1,9 @@
 This is a fork with modifications.
 ==================================
 Modifications:
-* Shilo's SHThumbstick Extension
-* BodSix's BSMovieClipAtlas for loading named movie clips
+
+* Shilo's [SHThumbstick Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shthumbstick)
+* BodSix's BSMovieClipAtlas for configuring an library of animations you want to load by name.
 * Modifications to SPDisplayObject
   * promotion of removeChild and dispatchEventOnChildren which were previously internal methods
 

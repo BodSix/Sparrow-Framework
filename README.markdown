@@ -1,3 +1,11 @@
+This is a fork with modifications.
+==================================
+Modifications:
+* Shilo's SHThumbstick Extension
+* BodSix's BSMovieClipAtlas for loading named movie clips
+* Modifications to SPDisplayObject
+  * promotion of removeChild and dispatchEventOnChildren which were previously internal methods
+
 Sparrow: an Open Source Framework for iPhone game development 
 =============================================================
 
@@ -16,9 +24,9 @@ Obviously Sparrow is for iPhone developers, especially those involved in game de
 will need to have a basic understanding of Objective-C – but there’s no way around that on the
 iPhone anyway.
 
-If you have already worked with Adobe™ Flash/Flex technology, you will immediately befriend with
+If you have already worked with Adobe Flash/Flex technology, you will immediately befriend with
 Sparrow since it uses lots of similar concepts and naming schemes. That said, everything is
-designed to be as intuitive as possible, so any Java™ or .Net™ developer will get the hang of it
+designed to be as intuitive as possible, so any Java or .Net� developer will get the hang of it
 quickly as well.
 
 How to start?

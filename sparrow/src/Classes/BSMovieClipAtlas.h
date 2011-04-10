@@ -99,10 +99,6 @@
 
   // only used during xml parsing
   BSMovieClipDef *parserClipDef;
-  SPMovieClip *parserClip;
-  BOOL parserClipLoop;
-  float parserClipFPS;
-  NSString *parserClipName;
 }
 
 /// Initializer

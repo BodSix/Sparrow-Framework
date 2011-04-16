@@ -92,7 +92,7 @@
 @interface BSMovieClipAtlas : NSObject 
 #endif
 {
-  @private
+  @protected
   NSMutableDictionary *textures;
   NSMutableDictionary *sounds;
   NSMutableDictionary *movieClipDefs;
@@ -106,7 +106,7 @@
 /// Initializes the MovieClipAtlas from an XML file.
 -(id)initWithContentsOfFile:(NSString *)path;
 /// Factory method
-+(BSMovieClipAtlas *)atlasWithContentsOfFile:(NSString *)path;
++(BSMovieClipAtlas *)mcAtlasWithContentsOfFile:(NSString *)path;
 
 @property (nonatomic, readonly) NSDictionary *textures;
 @property (nonatomic, readonly) NSDictionary *sounds;

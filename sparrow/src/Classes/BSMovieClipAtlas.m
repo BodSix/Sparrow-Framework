@@ -96,7 +96,7 @@
   return self;
 }
 
-+(BSMovieClipAtlas *)atlasWithContentsOfFile:(NSString *)path {
++(BSMovieClipAtlas *)mcAtlasWithContentsOfFile:(NSString *)path {
   return [[[BSMovieClipAtlas alloc] initWithContentsOfFile:path] autorelease];
 }
 

@@ -121,6 +121,9 @@
 /// The accumulated duration of all frames.
 @property (nonatomic, readonly) double duration;
 
+/// The elapsed duration (added by CO)
+@property (nonatomic, readonly) double elapsedTime;
+
 /// Indicates if the movie is currently playing.
 @property (nonatomic, readonly) BOOL isPlaying;
 

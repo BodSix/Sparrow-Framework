@@ -3,9 +3,12 @@ This is a fork with modifications.
 Modifications:
 
 * Shilo's [SHThumbstick Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shthumbstick)
+* Shilo's [SHSwipeEvent Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shswipeevent)
 * BodSix's BSMovieClipAtlas for configuring an library of animations you want to load by name.
 * Modifications to SPDisplayObject
   * promotion of removeChild and dispatchEventOnChildren which were previously internal methods
+* Modifications to SPMovieClip
+  * exposed ElapsedTime as a read-only property
 
 Sparrow: an Open Source Framework for iPhone game development 
 =============================================================
@@ -27,7 +30,7 @@ iPhone anyway.
 
 If you have already worked with Adobe Flash/Flex technology, you will immediately befriend with
 Sparrow since it uses lots of similar concepts and naming schemes. That said, everything is
-designed to be as intuitive as possible, so any Java or .Netâ developer will get the hang of it
+designed to be as intuitive as possible, so any Java or .Netï¿½ developer will get the hang of it
 quickly as well.
 
 How to start?

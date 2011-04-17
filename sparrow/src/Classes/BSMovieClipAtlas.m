@@ -217,6 +217,7 @@
       SPTexture *texture = [self findTexture:frame.textureName];
       if (!result) {
         result = [SPMovieClip movieWithFrame:texture fps:clip.fps];
+        result.loop = clip.loop;
       } else {
         [result addFrame:texture];
       }

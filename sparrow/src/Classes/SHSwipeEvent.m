@@ -52,7 +52,7 @@
 }
 
 - (SHSwipeDirection)directionInSpace:(SPDisplayObject *)space {
-	float swipeAngle;
+	float swipeAngle = 0;
 	if (mDirection == SHSwipeDirectionUp) {
 		swipeAngle = 0;
 	} else if (mDirection == SHSwipeDirectionDown) {

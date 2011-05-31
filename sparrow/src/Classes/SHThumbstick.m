@@ -62,7 +62,7 @@
 @synthesize innerImageScaleOnTouch = mInnerImageScaleOnTouch;
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		mType = SHThumbstickStatic;
 		mTouchRadius = DEFAULT_TOUCHRADIUS;
 		mOuterRadius = DEFAULT_OUTERRADIUS;
@@ -650,10 +650,10 @@
 }
 
 + (SHThumbstickEvent *)eventWithType:(NSString *)type distance:(float)distance direction:(float)direction {
-	return [[SHThumbstickEvent alloc] initWithType:type distance:distance direction:direction bubbles:YES];
+	return [[[SHThumbstickEvent alloc] initWithType:type distance:distance direction:direction bubbles:YES] autorelease];
 }
 
 + (SHThumbstickEvent *)eventWithType:(NSString *)type distance:(float)distance direction:(float)direction bubbles:(BOOL)bubbles {
-	return [[SHThumbstickEvent alloc] initWithType:type distance:distance direction:direction bubbles:bubbles];
+	return [[[SHThumbstickEvent alloc] initWithType:type distance:distance direction:direction bubbles:bubbles] autorelease];
 }
 @end

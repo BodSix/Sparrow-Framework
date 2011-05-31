@@ -212,7 +212,7 @@
 -(SPMovieClip *)getMovieClip:(NSString *)clipName {
   SPMovieClip *result = nil;
   BSMovieClipDef *clip = [movieClipDefs objectForKey:clipName];
-  if (clip) {
+  if (clip && ((id)clip) != [NSNull null]) {
     for (BSFrameDef *frame in clip.frames) {
       SPTexture *texture = [self findTexture:frame.textureName];
       if (!result) {

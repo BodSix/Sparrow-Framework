@@ -123,7 +123,7 @@
 @property (nonatomic, readonly) double duration;
 
 /// The elapsed duration (added by CO)
-@property (nonatomic, readonly) double elapsedTime;
+@property (nonatomic, readonly) double currentTime;
 
 /// Indicates if the movie is currently playing.
 @property (nonatomic, readonly) BOOL isPlaying;

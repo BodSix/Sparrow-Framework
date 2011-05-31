@@ -8,7 +8,7 @@ Modifications:
 * Modifications to SPDisplayObject
   * promotion of removeChild and dispatchEventOnChildren which were previously internal methods
 * Modifications to SPMovieClip
-  * exposed ElapsedTime as a read-only property
+  * exposed currentTime as a read-only property
 
 Sparrow: an Open Source Framework for iPhone game development 
 =============================================================

@@ -31,7 +31,7 @@
 @synthesize isPlaying = mPlaying;
 @synthesize currentFrame = mCurrentFrame;
 @synthesize duration = mTotalDuration;
-@synthesize elapsedTime = mElapsedTime;
+@synthesize currentTime = mCurrentTime;
 
 - (id)initWithFrame:(SPTexture *)texture fps:(float)fps
 {

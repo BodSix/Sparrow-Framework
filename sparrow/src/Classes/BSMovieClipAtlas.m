@@ -215,6 +215,16 @@
   if (clip && ((id)clip) != [NSNull null]) {
     for (BSFrameDef *frame in clip.frames) {
       SPTexture *texture = [self findTexture:frame.textureName];
+      assert(texture != nil);
+      /* debugging some cross-thread problems with SPRectangle
+      if ([texture isKindOfClass:[SPSubTexture class]]) {
+        SPSubTexture *subt = (SPSubTexture *)texture;
+        assert(subt.clipping.x >= 0);
+        assert(subt.clipping.y >= 0);
+        assert(subt.clipping.width <= 1.0);
+        assert(subt.clipping.height <= 1.0);
+      }
+       */
       if (!result) {
         result = [SPMovieClip movieWithFrame:texture fps:clip.fps];
         result.loop = clip.loop;

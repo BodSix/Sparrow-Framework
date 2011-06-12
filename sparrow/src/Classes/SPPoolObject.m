@@ -37,7 +37,8 @@
             [NSException raise:NSGenericException format:COMPLAIN_MISSING_IMP, self];
     }
     
-    if (!poolInfo->lastElement) 
+    // mainThread check added to make object available in background threads without pooling them
+    if (!([NSThread isMainThread] && poolInfo->lastElement))
     {
         // pool is empty -> allocate
         return NSAllocateObject(self, 0, NULL);
@@ -58,11 +59,16 @@
 
 - (void)dealloc
 {
-    SPPoolInfo *poolInfo = [isa poolInfo];
-    self->mPoolPredecessor = poolInfo->lastElement;
-    poolInfo->lastElement = self;
+    if ([NSThread isMainThread]) {
+        SPPoolInfo *poolInfo = [isa poolInfo];
+        self->mPoolPredecessor = poolInfo->lastElement;
+        poolInfo->lastElement = self;
     
-    if (0) [super dealloc]; // just to shut down a compiler warning ...
+        if (0) 
+          [super dealloc]; // just to shut down a compiler warning ...
+    } else {
+      [super dealloc];
+    }
 }
 
 - (void)purge

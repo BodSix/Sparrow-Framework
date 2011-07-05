@@ -4,11 +4,15 @@ Modifications:
 
 * Shilo's [SHThumbstick Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shthumbstick)
 * Shilo's [SHSwipeEvent Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shswipeevent)
+* Daniel's [SXGauge Extension](http://wiki.sparrow-framework.org/extensions/gauge)
 * BodSix's BSMovieClipAtlas for configuring an library of animations you want to load by name.
 * Modifications to SPDisplayObject
   * promotion of removeChild and dispatchEventOnChildren which were previously internal methods
 * Modifications to SPMovieClip
   * exposed currentTime as a read-only property
+* Modifications to SPPooledObject
+  * only allow objects allocated/deallocated in the main thread be eligible
+    to pull from or add to the pool.
 
 Sparrow: an Open Source Framework for iPhone game development 
 =============================================================

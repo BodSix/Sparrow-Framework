@@ -69,6 +69,21 @@
     }
 }
 
+- (BOOL)hasEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType
+{
+    NSArray *listeners = [mEventListeners objectForKey:eventType];
+    if (listeners)
+    {
+        for (NSInvocation *inv in listeners)
+        {
+            if (inv.target == object && (!listener || inv.selector == listener))
+                return YES;
+        }
+    
+    }
+    return NO;
+}
+
 - (void)removeEventListenersAtObject:(id)object forType:(NSString*)eventType
 {
     [self removeEventListener:nil atObject:object forType:eventType];

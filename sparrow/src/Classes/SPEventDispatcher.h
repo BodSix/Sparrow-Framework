@@ -70,6 +70,9 @@
 /// Removes an event listener at an object.
 - (void)removeEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType;
 
+/// Returns YES if an event listener is registered for the event type and object.  
+- (BOOL)hasEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType;
+
 /// Removes all event listeners at an objct that have a certain type.
 - (void)removeEventListenersAtObject:(id)object forType:(NSString*)eventType;
 

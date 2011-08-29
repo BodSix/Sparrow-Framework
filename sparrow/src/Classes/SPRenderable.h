@@ -11,4 +11,6 @@
 
 @protocol SPRenderable <NSObject>
 -(void)render:(SPRenderSupport*)support;
+-(float)alpha;
+-(void)setAlpha:(float)pAlpha;
 @end

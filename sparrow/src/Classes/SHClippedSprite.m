@@ -95,8 +95,15 @@
   
   SPDisplayObject *parent = self.parent;
   while (parent) {
-    if ([parent isKindOfClass:[SHClippedSprite class]] && ![[parent boundsInSpace:parent] containsPoint:localPoint])
-      return nil;
+//    if ([parent isKindOfClass:[SHClippedSprite class]] && ![[parent boundsInSpace:parent] containsPoint:localPoint])
+//      return nil;
+    if ([parent isKindOfClass:[SHClippedSprite class]]) {
+      SPMatrix *transformationMatrix = [self transformationMatrixToSpace:parent];
+      SPPoint *transformedPoint = [transformationMatrix transformPoint:localPoint];
+      if (![[parent boundsInSpace:parent] containsPoint:transformedPoint])
+        return nil;
+    }
+    
     parent = parent.parent;
   }
   

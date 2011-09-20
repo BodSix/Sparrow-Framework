@@ -13,6 +13,7 @@
 #import "SPEventDispatcher.h"
 #import "SPRectangle.h"
 #import "SPMatrix.h"
+#import "SPRenderable.h"
 
 @class SPDisplayObjectContainer;
 @class SPStage;
@@ -75,7 +76,7 @@
  
 ------------------------------------------------------------------------------------------------- */
 
-@interface SPDisplayObject : SPEventDispatcher 
+@interface SPDisplayObject : SPEventDispatcher <SPRenderable>
 {
   @private
     float mX;

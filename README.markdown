@@ -13,6 +13,7 @@ Modifications:
 * Modifications to SPPooledObject
   * only allow objects allocated/deallocated in the main thread be eligible
     to pull from or add to the pool.
+* Shilo's [SHClippedSprite Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shclippedsprite)
 
 Sparrow: an Open Source Framework for iPhone game development 
 =============================================================

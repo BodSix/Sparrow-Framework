@@ -180,6 +180,11 @@ static void getChildEventListeners(SPDisplayObject *object, NSString *eventType,
     return [mChildren count];
 }
 
+- (void)sortChildrenUsingComparator:(NSComparator)comparator 
+{
+  [mChildren sortUsingComparator:comparator];
+}
+
 - (SPRectangle*)boundsInSpace:(SPDisplayObject*)targetCoordinateSpace
 {    
     int numChildren = [mChildren count];

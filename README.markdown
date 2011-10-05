@@ -8,6 +8,7 @@ Modifications:
 * BodSix's BSMovieClipAtlas for configuring an library of animations you want to load by name.
 * Modifications to SPDisplayObject
   * promotion of removeChild and dispatchEventOnChildren which were previously internal methods
+  * addition of sortChildrenUsingComparator, which passes an NSComparator tothe underlying mChildren's sortUsingComparator method.
 * Modifications to SPMovieClip
   * exposed currentTime as a read-only property
 * Modifications to SPPooledObject

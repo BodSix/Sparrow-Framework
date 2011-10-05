@@ -89,6 +89,9 @@
 /// Swaps the indexes of two children.
 - (void)swapChildAtIndex:(int)index1 withChildAtIndex:(int)index2;
 
+/// sorts children using a comparator - added by Cory Osborn
+- (void)sortChildrenUsingComparator:(NSComparator)comparator;
+
 /// ----------------
 /// @name Properties
 /// ----------------

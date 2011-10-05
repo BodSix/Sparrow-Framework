@@ -514,7 +514,7 @@
 	mDebugDrawInnerImage.y = outerRadius-mInnerRadius;
 	[self addChild:mDebugDrawInnerImage];
 	
-	if (mType == SHThumbstickAbsolute || mType == SHThumbstickFloat && !mCurTouch) {
+	if (mType == SHThumbstickAbsolute || (mType == SHThumbstickFloat && !mCurTouch)) {
 		if (mDebugDrawImage) mDebugDrawImage.visible = NO;
 		if (mDebugDrawInnerImage) mDebugDrawInnerImage.visible = NO;
 	}

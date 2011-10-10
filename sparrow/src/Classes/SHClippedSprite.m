@@ -62,6 +62,14 @@
   [super setHeight:height];
 }
 
+- (void)removeAllChildren
+{
+  [mClip retain];
+  [super removeAllChildren];
+  [self addChild:mClip];
+  [mClip release];
+}
+
 - (void)onAddedToStage:(SPEvent *)event {
   [self removeEventListener:@selector(onAddedToStage:) atObject:self forType:SP_EVENT_TYPE_ADDED_TO_STAGE];
   mStage = (SPStage *)self.stage;

@@ -27,4 +27,5 @@
 @property (nonatomic, assign) BOOL clipping;
 
 + (SHClippedSprite *)clippedSprite;
+
 @end

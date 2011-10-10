@@ -2,6 +2,7 @@ This is a fork with modifications.
 ==================================
 Modifications:
 
+* Oct 10, 2011: Overwrote SHClippedSprite's removeAllChildren to not remove mClip.
 * Shilo's [SHThumbstick Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shthumbstick)
 * Shilo's [SHSwipeEvent Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shswipeevent)
 * Daniel's [SXGauge Extension](http://wiki.sparrow-framework.org/extensions/gauge)

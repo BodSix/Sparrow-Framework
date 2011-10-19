@@ -35,8 +35,7 @@
 
 - (id)initWithFrame:(SPTexture *)texture fps:(float)fps
 {
-    if ((self = [super initWithTexture:texture]))
-    {
+    if ((self = [super initWithTexture:texture])) {
         self.fps = fps;
         mLoop = YES;
         mPlaying = YES;
@@ -51,16 +50,17 @@
     return self;
 }
 
-- (id)initWithFrames:(NSArray *)textures fps:(float)fps
-{
-    if (textures.count == 0)
-        [NSException raise:SP_EXC_INVALID_OPERATION format:@"empty texture array"];
-        
-    [self initWithFrame:[textures objectAtIndex:0] fps:fps];
-    
-    if (textures.count > 1)
-        for (int i=1; i<textures.count; ++i)
-            [self addFrame:[textures objectAtIndex:i]];
+- (id)initWithFrames:(NSArray *)textures fps:(float)fps {
+    if ((self = [super init])) {
+      if (textures.count == 0)
+          [NSException raise:SP_EXC_INVALID_OPERATION format:@"empty texture array"];
+          
+      [self initWithFrame:[textures objectAtIndex:0] fps:fps];
+      
+      if (textures.count > 1)
+          for (int i=1; i<textures.count; ++i)
+              [self addFrame:[textures objectAtIndex:i]];
+    }
     
     return self;
 }

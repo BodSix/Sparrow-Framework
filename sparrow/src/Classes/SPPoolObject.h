@@ -19,6 +19,7 @@ typedef struct
     SPPoolObject *lastElement;    
 } SPPoolInfo;
 
+#define DISABLE_MEMORY_POOLING
 #ifndef DISABLE_MEMORY_POOLING
 
 
@@ -61,7 +62,7 @@ typedef struct
 
 #else
 
-typedef NSObject SPPoolObject;
+#define SPPoolObject NSObject
 
 /// Sparrow extensions for NSObject.
 @interface NSObject (SPPoolObjectExtensions)

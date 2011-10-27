@@ -113,10 +113,10 @@
 
 
 -(void)parseAtlasXml:(NSString *)path {
-  SP_CREATE_POOL(pool);
-  
   if (!path) 
     return;
+
+  SP_CREATE_POOL(pool);
   
   parserClipDef = nil;
   

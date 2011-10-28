@@ -95,4 +95,7 @@
 /// The height of one line in pixels.
 @property (nonatomic, assign)   float lineHeight;
 
+/// The font texture (exposed by Cory Osborn)
+@property (nonatomic, readonly) SPTexture *fontTexture;
+
 @end

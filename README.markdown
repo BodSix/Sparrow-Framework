@@ -2,6 +2,9 @@ This is a fork with modifications.
 ==================================
 Modifications:
 
+* Oct 27, 2011: 
+  * Exposed the Font Texture property in SPBitmapFont
+  * Added a class method to SPTextField to find registered BitmapFonts for use outside of SPTextFields. 
 * Oct 10, 2011: Overwrote SHClippedSprite's removeAllChildren to not remove mClip.
 * Shilo's [SHThumbstick Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shthumbstick)
 * Shilo's [SHSwipeEvent Extension](http://wiki.sparrow-framework.org/users/shilo/extensions/shswipeevent)

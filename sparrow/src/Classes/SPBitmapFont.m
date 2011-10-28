@@ -41,6 +41,7 @@
 @synthesize name = mName;
 @synthesize lineHeight = mLineHeight;
 @synthesize size = mSize;
+@synthesize fontTexture = mFontTexture;
 
 - (id)initWithContentsOfFile:(NSString *)path texture:(SPTexture *)texture
 {

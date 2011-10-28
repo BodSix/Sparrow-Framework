@@ -319,6 +319,11 @@ static NSMutableDictionary *bitmapFonts = nil;
     return [SPTextField registerBitmapFontFromFile:path texture:nil];
 }
 
++ (SPBitmapFont *)findRegisteredBitmapFontForName:(NSString *)name
+{
+    return [bitmapFonts objectForKey:name];
+}
+
 + (void)unregisterBitmapFont:(NSString *)name
 {
     [bitmapFonts removeObjectForKey:name];

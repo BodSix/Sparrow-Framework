@@ -15,6 +15,7 @@
 
 @class SPTexture;
 @class SPQuad;
+@class SPBitmapFont;
 
 #define SP_DEFAULT_FONT_NAME  @"Helvetica"
 #define SP_DEFAULT_FONT_SIZE  14.0f
@@ -137,6 +138,9 @@ typedef enum
 /// 
 /// @return The name of the font as defined in the font XML. 
 + (NSString *)registerBitmapFontFromFile:(NSString*)path;
+
+/// @return a bitmap font from those registered.  Returns nil if the font has not been registered.
++ (SPBitmapFont *)findRegisteredBitmapFontForName:(NSString *)name;
 
 /// Releases the bitmap font.
 + (void)unregisterBitmapFont:(NSString *)name;

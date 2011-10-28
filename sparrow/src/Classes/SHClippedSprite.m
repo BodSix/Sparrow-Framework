@@ -36,7 +36,7 @@
     mClip.visible = NO;
     mClip.width = 0;
     mClip.height = 0;
-    [self addChild:mClip];
+    [super addChild:mClip]; // Avoid our own addChild as it increments by 1 to avoid the mClip
     mClipping = NO;
     [self addEventListener:@selector(onAddedToStage:) atObject:self forType:SP_EVENT_TYPE_ADDED_TO_STAGE];
   }
@@ -52,6 +52,7 @@
 @synthesize clip = mClip;
 @synthesize clipping = mClipping;
 
+#pragma mark - overridding base class methods so that callers don't need to care
 - (void)setWidth:(float)width {
   mClip.width = width;
   [super setWidth:width];
@@ -70,6 +71,7 @@
   [mClip release];
 }
 
+#pragma mark -
 - (void)onAddedToStage:(SPEvent *)event {
   [self removeEventListener:@selector(onAddedToStage:) atObject:self forType:SP_EVENT_TYPE_ADDED_TO_STAGE];
   mStage = (SPStage *)self.stage;
@@ -94,6 +96,21 @@
     return [super boundsInSpace:targetCoordinateSpace];
   }
 }
+
+#pragma mark - NSFastEnumeration
+-(NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len
+{
+  [mClip retain];
+  [mClip removeFromParent];
+
+  NSUInteger retVal = [super countByEnumeratingWithState:state objects:stackbuf count:len];
+
+  [self addChild:mClip atIndex:0];
+  [mClip release];
+
+  return retVal;
+}
+
 @end
 
 @implementation SPDisplayObject (ClippedHitTest)

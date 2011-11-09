@@ -17,6 +17,9 @@
 
 @interface SPAudioEngine ()
 
+// --- C functions ---
+void interruptionCallback (void *inUserData, UInt32 interruptionState);
+
 + (BOOL)initAudioSession:(SPAudioSessionCategory)category;
 + (BOOL)initOpenAL;
 

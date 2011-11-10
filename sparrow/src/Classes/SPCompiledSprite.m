@@ -143,7 +143,7 @@
         int numVertices = [vertexData length] / sizeof(float) / 2; 
         int numQuads = numVertices / 4;
         int indexBufferSize = numQuads * 6; // 4 + 2 for degenerate triangles
-        GLushort *indices = malloc(indexBufferSize * sizeof(GLushort));
+        GLushort *indices = (GLushort *)malloc(indexBufferSize * sizeof(GLushort));
         
         int pos = 0;
         for (int i=0; i<numQuads; ++i)
@@ -407,7 +407,7 @@
 - (void)updateColorData
 {
     if (!mCurrentColors) 
-        mCurrentColors = malloc(mColorData.length * sizeof(uint));        
+        mCurrentColors = (uint *)malloc(mColorData.length * sizeof(uint));        
     
     const uint *origColors = (const uint *)mColorData.bytes;
     uint *newColors = mCurrentColors;

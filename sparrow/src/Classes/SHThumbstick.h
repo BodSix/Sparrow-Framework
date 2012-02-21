@@ -60,7 +60,7 @@ typedef enum {
 @property (nonatomic, assign) float outerRadius;
 @property (nonatomic, assign) float innerRadius;
 @property (nonatomic, assign) BOOL debugDraw;
-@property (nonatomic, assign) SPRectangle *bounds;
+@property (nonatomic, retain) SPRectangle *bounds;
 @property (nonatomic, assign) float innerImageScaleOnTouch;
 
 + (SHThumbstick *)thumbstick;
@@ -69,6 +69,9 @@ typedef enum {
 - (BOOL)isWithinBounds:(SPPoint *)point;
 - (void)show;
 - (void)hide;
+
+- (void)forceTouchUp;
+
 @end
 
 @interface SHThumbstickEvent : SPEvent {

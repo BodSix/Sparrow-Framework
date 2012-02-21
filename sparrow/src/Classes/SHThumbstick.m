@@ -356,7 +356,7 @@
 
 - (void)onTouchUp:(SPTouch *)touchUp {
 	if (touchUp != mCurTouch) return;
-	
+
 	switch (mType) {
 		case SHThumbstickStatic:
 		case SHThumbstickRelative:
@@ -475,8 +475,7 @@
 }
 
 - (void)setBounds:(SPRectangle *)bounds {
-	if (mBounds) [mBounds release];
-	mBounds = [bounds retain];
+	self.bounds = bounds;
 	if (mDebugDraw) [self drawDebugDraw];
 }
 
@@ -603,6 +602,10 @@
 	if (mDebugDrawInnerImage) mDebugDrawInnerImage.visible = NO;
 }
 
+- (void)forceTouchUp {
+  [self onTouchUp:mCurTouch];
+}
+
 - (BOOL)isWithinBounds:(SPPoint *)point {
 	if (point.x < mBounds.x || point.x > mBounds.x + mBounds.width || point.y < mBounds.y || point.y > mBounds.y + mBounds.height) {
 		return NO;
@@ -624,9 +627,8 @@
 
 
 - (void)dealloc {
-	if (mCurTouch) [mCurTouch release];
 	if (mRender) [self stop];
-	if (mBounds) [mBounds release];
+  [mBounds release];
 	[self removeAllChildren];
 	[super dealloc];
 }

@@ -46,6 +46,8 @@ static const float BOUNCE_DURATION   = 0.5f;
     mClip.height = 0;
     [super addChild:mClip]; // Avoid our own addChild as it increments by 1 to avoid the mClip
     mClipping = NO;
+    mCanScrollX = NO;
+    mCanScrollY = NO;
     mIsScrolling = NO;
     [self addEventListener:@selector(onAddedToStage:) atObject:self forType:SP_EVENT_TYPE_ADDED_TO_STAGE];
     [self addEventListener:@selector(onClippedSpriteTouch:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
@@ -63,6 +65,9 @@ static const float BOUNCE_DURATION   = 0.5f;
 
 @synthesize clip = mClip;
 @synthesize clipping = mClipping;
+@synthesize canScrollX = mCanScrollX;
+@synthesize canScrollY = mCanScrollY;
+@synthesize isScrolling = mIsScrolling;
 
 #pragma mark - overridding base class methods so that callers don't need to care
 - (void)setWidth:(float)width {
@@ -125,6 +130,9 @@ static const float BOUNCE_DURATION   = 0.5f;
 
 #pragma mark - scrolling
 - (void)onClippedSpriteTouch:(SPTouchEvent*)touchEvent {
+  if (!mCanScrollX && !mCanScrollY)
+    return;
+
   SPTouch *touch = [[[touchEvent touchesWithTarget:self] allObjects] objectAtIndex:0];
   SPPoint *touchPos = [touch locationInSpace:self];
 
@@ -132,36 +140,65 @@ static const float BOUNCE_DURATION   = 0.5f;
     mIsScrolling = YES;
 
     for (SPDisplayObject *spdo in self) {
-      spdo.x += touchPos.x - lastTouchX;
+      if (mCanScrollX)
+        spdo.x += touchPos.x - lastTouchX;
+
+      if (mCanScrollY)
+      spdo.y += touchPos.y - lastTouchY;
     }
   } else if (touch.phase == SPTouchPhaseEnded) {
     mIsScrolling = NO;
     [self bounceMenuItems];
   }
 
-  lastTouchX = touchPos.x;
+  if (mCanScrollX)
+    lastTouchX = touchPos.x;
+  if (mCanScrollY)
+    lastTouchY = touchPos.y;
 }
 
 - (void)bounceMenuItems {
+  NSAssert(mCanScrollX || mCanScrollY, @"SHClippedSprite: bounceMenuItems: Cannot scroll!");
+
   if (1 == self.numChildren)
     return;
 
   // min could be negative and max could be out of view.  This is a feature.
-  SPDisplayObject *lastchild = [self childAtIndex:self.numChildren - 1];
-  float max = lastchild.x + lastchild.width;
-  float min = [self childAtIndex:1].x; // Skip the mClip - I wish I didn't have to know about this, but I can't see a way to make SHClippedSprite hide it
+  SPDisplayObject *firstChild = [self childAtIndex:[self childIndex:mClip] + 1];  // Skip the mClip
+  SPDisplayObject *lastchild  = [self childAtIndex:self.numChildren - 1];
+  float maxX = lastchild.x + lastchild.width;
+  float maxY = lastchild.y + lastchild.height;
+  float minX = firstChild.x;
+  float minY = firstChild.y;
 
-  float bounceDistance;
-    for (SPDisplayObject *spdo in self) {
-    if (min > 0.0f || (max - min) < self.width)
-      bounceDistance = 0.0f - min;
-    else if (max < self.width)
-      bounceDistance = self.width - max;
-    else
+  float bounceDistanceX;
+  float bounceDistanceY;
+  for (SPDisplayObject *spdo in self) {
+    bounceDistanceX = 0.0f;
+    bounceDistanceY = 0.0f;
+
+    if (mCanScrollX) {
+      if (minX > 0.0f || (maxX - minX) < self.width)
+        bounceDistanceX = 0.0f - minX;
+      else if (maxX < self.width)
+        bounceDistanceX = self.width - maxX;
+    }
+
+    if (mCanScrollY) {
+      if (minY > 0.0f || (maxY - minY) < self.height)
+        bounceDistanceY = 0.0f - minY;
+      else if (maxY < self.height)
+        bounceDistanceY = self.height - maxY;
+    }
+
+    if (0.0f == bounceDistanceX && 0.0f == bounceDistanceY)
       continue;
 
     SPTween *bounceMenuItems = [SPTween tweenWithTarget:spdo time:BOUNCE_DURATION transition:SP_TRANSITION_EASE_OUT];
-    [bounceMenuItems animateProperty:@"x" targetValue:spdo.x + bounceDistance];
+    if (0.0f != bounceDistanceX)
+      [bounceMenuItems animateProperty:@"x" targetValue:spdo.x + bounceDistanceX];
+    if (0.0f != bounceDistanceY)
+      [bounceMenuItems animateProperty:@"y" targetValue:spdo.y + bounceDistanceY];
     [self.stage.juggler addObject:bounceMenuItems];
   }
 }

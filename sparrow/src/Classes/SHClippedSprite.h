@@ -24,12 +24,18 @@
   BOOL mClipping;
 
   // Scrolling
+  BOOL mCanScrollX;
+  BOOL mCanScrollY;
   BOOL mIsScrolling;
   float lastTouchX;
+  float lastTouchY;
 }
 
 @property (nonatomic, readonly) SPQuad *clip;
 @property (nonatomic, assign) BOOL clipping;
+@property (nonatomic, assign) BOOL canScrollX;
+@property (nonatomic, assign) BOOL canScrollY;
+@property (nonatomic, readonly) BOOL isScrolling;
 
 + (SHClippedSprite *)clippedSprite;
 

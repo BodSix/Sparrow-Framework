@@ -18,14 +18,20 @@
 @class SPQuad;
 
 @interface SHClippedSprite : SPSprite {
+@private
   SPQuad *mClip;
   SPStage *mStage;
   BOOL mClipping;
+
+  // Scrolling
+  BOOL mIsScrolling;
+  float lastTouchX;
 }
 
 @property (nonatomic, readonly) SPQuad *clip;
 @property (nonatomic, assign) BOOL clipping;
 
 + (SHClippedSprite *)clippedSprite;
+
 
 @end

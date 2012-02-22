@@ -12,16 +12,24 @@
 // Copyright 2011 BodSix, Inc. All rights reserved.
 //
 
-
 #import "SHClippedSprite.h"
+
+#import "SPDisplayObject.h"
 #import "SPEvent.h"
 #import "SPQuad.h"
 #import "SPStage.h"
-#import "SPDisplayObject.h"
+#import "SPTouchEvent.h"
+#import "SPTween.h"
 #import <OpenGLES/ES1/gl.h>
 
+static const float BOUNCE_DURATION   = 0.5f;
+
 @interface SHClippedSprite ()
+
 - (void)onAddedToStage:(SPEvent *)event;
+- (void)onClippedSpriteTouch:(SPTouchEvent*)touchEvent;
+- (void)bounceMenuItems;
+
 @end
 
 @implementation SHClippedSprite
@@ -38,13 +46,17 @@
     mClip.height = 0;
     [super addChild:mClip]; // Avoid our own addChild as it increments by 1 to avoid the mClip
     mClipping = NO;
+    mIsScrolling = NO;
     [self addEventListener:@selector(onAddedToStage:) atObject:self forType:SP_EVENT_TYPE_ADDED_TO_STAGE];
+    [self addEventListener:@selector(onClippedSpriteTouch:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
   }
   return self;
 }
 
 - (void)dealloc {
   [self removeEventListener:@selector(onAddedToStage:) atObject:self forType:SP_EVENT_TYPE_ADDED_TO_STAGE];
+  [self removeEventListener:@selector(onClippedSpriteTouch:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
   [mClip release];
   [super dealloc];
 }
@@ -111,8 +123,52 @@
   return retVal;
 }
 
+#pragma mark - scrolling
+- (void)onClippedSpriteTouch:(SPTouchEvent*)touchEvent {
+  SPTouch *touch = [[[touchEvent touchesWithTarget:self] allObjects] objectAtIndex:0];
+  SPPoint *touchPos = [touch locationInSpace:self];
+
+  if (touch.phase == SPTouchPhaseMoved) {
+    mIsScrolling = YES;
+
+    for (SPDisplayObject *spdo in self) {
+      spdo.x += touchPos.x - lastTouchX;
+    }
+  } else if (touch.phase == SPTouchPhaseEnded) {
+    mIsScrolling = NO;
+    [self bounceMenuItems];
+  }
+
+  lastTouchX = touchPos.x;
+}
+
+- (void)bounceMenuItems {
+  if (1 == self.numChildren)
+    return;
+
+  // min could be negative and max could be out of view.  This is a feature.
+  SPDisplayObject *lastchild = [self childAtIndex:self.numChildren - 1];
+  float max = lastchild.x + lastchild.width;
+  float min = [self childAtIndex:1].x; // Skip the mClip - I wish I didn't have to know about this, but I can't see a way to make SHClippedSprite hide it
+
+  float bounceDistance;
+    for (SPDisplayObject *spdo in self) {
+    if (min > 0.0f || (max - min) < self.width)
+      bounceDistance = 0.0f - min;
+    else if (max < self.width)
+      bounceDistance = self.width - max;
+    else
+      continue;
+
+    SPTween *bounceMenuItems = [SPTween tweenWithTarget:spdo time:BOUNCE_DURATION transition:SP_TRANSITION_EASE_OUT];
+    [bounceMenuItems animateProperty:@"x" targetValue:spdo.x + bounceDistance];
+    [self.stage.juggler addObject:bounceMenuItems];
+  }
+}
+
 @end
 
+#pragma mark - SPDisplayObject (ClippedHitTest)
 @implementation SPDisplayObject (ClippedHitTest)
 - (SPDisplayObject*)hitTestPoint:(SPPoint*)localPoint forTouch:(BOOL)isTouch
 {
@@ -133,4 +189,6 @@
   if ([[self boundsInSpace:self] containsPoint:localPoint]) return self;
   else return nil;
 }
+
 @end
+

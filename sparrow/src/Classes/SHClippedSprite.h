@@ -36,8 +36,10 @@
 @property (nonatomic, assign) BOOL canScrollX;
 @property (nonatomic, assign) BOOL canScrollY;
 @property (nonatomic, readonly) BOOL isScrolling;
+@property (nonatomic) float scrollXPos;
+@property (nonatomic) float scrollYPos;
 
 + (SHClippedSprite *)clippedSprite;
 
-
 @end
+

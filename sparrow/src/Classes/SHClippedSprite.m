@@ -69,6 +69,37 @@ static const float BOUNCE_DURATION   = 0.5f;
 @synthesize canScrollY = mCanScrollY;
 @synthesize isScrolling = mIsScrolling;
 
+@synthesize scrollXPos;
+@synthesize scrollYPos;
+
+- (float)scrollXPos {
+  if ([self numChildren] == 1)  // mClip only
+    return 0.0f;
+
+  return [self childAtIndex:[self childIndex:mClip] + 1].x;  // Skip the mClip
+}
+
+- (void)setScrollXPos:(float)pScrollXPos {
+  for (SPDisplayObject *spdo in self) {
+    if (mCanScrollX)
+      spdo.x += pScrollXPos;
+  }
+}
+
+- (float)scrollYPos {
+  if ([self numChildren] == 1)  // mClip only
+    return 0.0f;
+
+  return [self childAtIndex:[self childIndex:mClip] + 1].y;  // Skip the mClip
+}
+
+- (void)setScrollYPos:(float)pScrollYPos {
+  for (SPDisplayObject *spdo in self) {
+    if (mCanScrollX)
+      spdo.y += pScrollYPos;
+  }
+}
+
 #pragma mark - overridding base class methods so that callers don't need to care
 - (void)setWidth:(float)width {
   mClip.width = width;
@@ -128,7 +159,7 @@ static const float BOUNCE_DURATION   = 0.5f;
   return retVal;
 }
 
-#pragma mark - scrolling
+#pragma mark - Scrolling
 - (void)onClippedSpriteTouch:(SPTouchEvent*)touchEvent {
   if (!mCanScrollX && !mCanScrollY)
     return;
@@ -173,7 +204,7 @@ static const float BOUNCE_DURATION   = 0.5f;
 
   float bounceDistanceX;
   float bounceDistanceY;
-  for (SPDisplayObject *spdo in self) {
+  for (SPDisplayObject *spdo in self) { // fast enumeration skips mClip
     bounceDistanceX = 0.0f;
     bounceDistanceY = 0.0f;
 

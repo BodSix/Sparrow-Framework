@@ -22,7 +22,7 @@
 #import "SPTween.h"
 #import <OpenGLES/ES1/gl.h>
 
-static const float BOUNCE_DURATION   = 0.5f;
+static const float BOUNCE_DURATION   = 0.4f;
 
 @interface SHClippedSprite ()
 

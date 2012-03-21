@@ -12,6 +12,8 @@
 #import "SPMovieClip.h"
 #import "SPMacros.h"
 
+#import "BMAudioManager.h"
+
 // --- private interface ---------------------------------------------------------------------------
 
 @interface SPMovieClip ()
@@ -46,6 +48,9 @@
         mSounds = [[NSMutableArray alloc] init];
         mFrameDurations = [[NSMutableArray alloc] init];        
         [self addFrame:texture];
+
+        bmam = [BMAudioManager instance];
+        NSAssert(bmam, @"SPMovieClip: initWithFrame: bmam is nil!");
     }
     return self;
 }
@@ -192,7 +197,7 @@
 - (void)playCurrentSound
 {
     id sound = [mSounds objectAtIndex:mCurrentFrame];
-    if ([NSNull class] != [sound class])                    
+    if ([NSNull class] != [sound class] && bmam.sfx)
         [sound play];
 }
 

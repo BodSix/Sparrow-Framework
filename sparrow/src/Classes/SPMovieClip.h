@@ -36,7 +36,9 @@
  method called regularly) to run.
  
 ------------------------------------------------------------------------------------------------- */
- 
+
+@class BMAudioManager;
+
 @interface SPMovieClip : SPImage <SPAnimatable>
 {
   @private
@@ -50,6 +52,8 @@
     BOOL mLoop;
     BOOL mPlaying;
     int mCurrentFrame;
+
+    BMAudioManager *bmam; // I hate this ugly breach in encapsulation
 }
 
 /// ------------------

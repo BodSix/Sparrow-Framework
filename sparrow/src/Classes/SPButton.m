@@ -10,6 +10,8 @@
 //
 
 #import "SPButton.h"
+
+#import "BMAudioManager.h"
 #import "SPTouchEvent.h"
 #import "SPTexture.h"
 #import "SPGLTexture.h"
@@ -112,6 +114,7 @@
     {
         [self resetContents];
         [self dispatchEvent:[SPEvent eventWithType:SP_EVENT_TYPE_TRIGGERED]];
+        [[BMAudioManager instance] playSound:SFX_UI_SELECT];
     }    
     else if (touch.phase == SPTouchPhaseCancelled && mIsDown)
     {

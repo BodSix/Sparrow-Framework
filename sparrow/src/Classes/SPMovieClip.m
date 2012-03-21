@@ -197,7 +197,7 @@
 - (void)playCurrentSound
 {
     id sound = [mSounds objectAtIndex:mCurrentFrame];
-    if ([NSNull class] != [sound class] && bmam.sfx)
+    if ([NSNull class] != [sound class] && bmam.allowAtlasSounds)
         [sound play];
 }
 

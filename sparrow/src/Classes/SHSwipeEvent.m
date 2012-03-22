@@ -99,25 +99,25 @@ static UISwipeGestureRecognizer *mRightSwipeRecognizer;
 	
 	mUpSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeUp:)];
 	mUpSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-	mUpSwipeRecognizer.cancelsTouchesInView = NO;
+	mUpSwipeRecognizer.cancelsTouchesInView = YES;
 	mUpSwipeRecognizer.delaysTouchesBegan = NO;
 	mUpSwipeRecognizer.delaysTouchesEnded = NO;
 	
 	mDownSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeDown:)];
 	mDownSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-	mDownSwipeRecognizer.cancelsTouchesInView = NO;
+	mDownSwipeRecognizer.cancelsTouchesInView = YES;
 	mDownSwipeRecognizer.delaysTouchesBegan = NO;
 	mDownSwipeRecognizer.delaysTouchesEnded = NO;
 	
 	mLeftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeLeft:)];
 	mLeftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-	mLeftSwipeRecognizer.cancelsTouchesInView = NO;
+	mLeftSwipeRecognizer.cancelsTouchesInView = YES;
 	mLeftSwipeRecognizer.delaysTouchesBegan = NO;
 	mLeftSwipeRecognizer.delaysTouchesEnded = NO;
 	
 	mRightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeRight:)];
 	mRightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-	mRightSwipeRecognizer.cancelsTouchesInView = NO;
+	mRightSwipeRecognizer.cancelsTouchesInView = YES;
 	mRightSwipeRecognizer.delaysTouchesBegan = NO;
 	mRightSwipeRecognizer.delaysTouchesEnded = NO;
   

@@ -238,8 +238,7 @@ static const float BOUNCE_DURATION   = 0.4f;
 
 #pragma mark - SPDisplayObject (ClippedHitTest)
 @implementation SPDisplayObject (ClippedHitTest)
-- (SPDisplayObject*)hitTestPoint:(SPPoint*)localPoint forTouch:(BOOL)isTouch
-{
+- (SPDisplayObject*)hitTestPoint:(SPPoint*)localPoint forTouch:(BOOL)isTouch {
   if (isTouch && (!mVisible || !mTouchable)) return nil;
   
   SPDisplayObject *parent = self.parent;

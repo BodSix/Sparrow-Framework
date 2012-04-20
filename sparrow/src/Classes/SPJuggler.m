@@ -70,9 +70,10 @@
         if (![currentObject respondsToSelector:targetSel] || ![[currentObject target] isEqual:object])
             [remainingObjects addObject:currentObject];     
     }
-    
-    [mObjects release];
+
+    NSMutableSet *temp = mObjects;  // Making mObjects more thread-safe
     mObjects = remainingObjects;
+    [temp release];
 }
 
 - (id)delayInvocationAtTarget:(id)target byTime:(double)time

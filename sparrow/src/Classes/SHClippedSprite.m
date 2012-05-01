@@ -234,12 +234,9 @@ static const float BOUNCE_DURATION   = 0.4f;
   }
 }
 
-@end
-
-#pragma mark - SPDisplayObject (ClippedHitTest)
-@implementation SPDisplayObject (ClippedHitTest)
+#pragma mark - 
 - (SPDisplayObject*)hitTestPoint:(SPPoint*)localPoint forTouch:(BOOL)isTouch {
-  if (isTouch && (!mVisible || !mTouchable)) return nil;
+  if (isTouch && (!self.visible || !self.touchable)) return nil;
   
   SPDisplayObject *parent = self.parent;
   while (parent) {
@@ -256,6 +253,5 @@ static const float BOUNCE_DURATION   = 0.4f;
   if ([[self boundsInSpace:self] containsPoint:localPoint]) return self;
   else return nil;
 }
-
 @end
 

@@ -234,9 +234,16 @@ static const float BOUNCE_DURATION   = 0.4f;
   }
 }
 
-#pragma mark - 
+@end
+
+// When this was not in it's own category we fail some hit tests that we should succeed on.
+// Without the pragma's though clang will complain
+#pragma mark - SPDisplayObject (ClippedHitTest)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
+@implementation SPDisplayObject (ClippedHitTest)
 - (SPDisplayObject*)hitTestPoint:(SPPoint*)localPoint forTouch:(BOOL)isTouch {
-  if (isTouch && (!self.visible || !self.touchable)) return nil;
+  if (isTouch && (!mVisible || !mTouchable)) return nil;
   
   SPDisplayObject *parent = self.parent;
   while (parent) {
@@ -253,5 +260,6 @@ static const float BOUNCE_DURATION   = 0.4f;
   if ([[self boundsInSpace:self] containsPoint:localPoint]) return self;
   else return nil;
 }
+#pragma clang diagnostic pop
 @end
 

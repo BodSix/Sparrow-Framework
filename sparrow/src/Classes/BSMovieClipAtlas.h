@@ -119,6 +119,7 @@
 -(void)addSound:(SPSound *)sound withName:(NSString *)name;
 -(void)addSoundPath:(NSString *)soundPath withName:(NSString *)name;
 
+- (void)parseAtlasXml:(NSString*)path;
 -(SPTexture *)findTexture:(NSString *)textureName;
 -(SPSoundChannel *)getSoundChannel:(NSString *)soundName;
 -(SPMovieClip *)getMovieClip:(NSString *)clipName;

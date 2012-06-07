@@ -73,12 +73,6 @@
 
 
 
-// --- private interface ---------------------------------------------------------------------------
-@interface BSMovieClipAtlas()
-- (void)parseAtlasXml:(NSString*)path;
-@end
-
-
 // --- class implementation ------------------------------------------------------------------------
 @implementation BSMovieClipAtlas
 

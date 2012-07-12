@@ -60,6 +60,7 @@
 @synthesize debugDraw = mDebugDraw;
 @synthesize bounds = mBounds;
 @synthesize innerImageScaleOnTouch = mInnerImageScaleOnTouch;
+@synthesize curTouch = mCurTouch;
 
 - (id)init {
 	if ((self = [super init])) {

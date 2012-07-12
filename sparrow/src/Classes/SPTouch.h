@@ -97,7 +97,7 @@ typedef enum
 @property (nonatomic, readonly) int tapCount;
 
 /// The current phase the touch is in.
-@property (nonatomic, readonly) SPTouchPhase phase;
+@property (nonatomic, assign) SPTouchPhase phase;
 
 /// The display object at which the touch occurred.
 @property (nonatomic, readonly) SPDisplayObject *target;

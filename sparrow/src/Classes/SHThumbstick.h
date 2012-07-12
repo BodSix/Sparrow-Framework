@@ -62,6 +62,7 @@ typedef enum {
 @property (nonatomic, assign) BOOL debugDraw;
 @property (nonatomic, retain) SPRectangle *bounds;
 @property (nonatomic, assign) float innerImageScaleOnTouch;
+@property (nonatomic, readonly) SPTouch* curTouch;
 
 + (SHThumbstick *)thumbstick;
 - (void)start;
